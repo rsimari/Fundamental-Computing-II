@@ -1,0 +1,4 @@
+estimatingpi.cpp Report
+======================
+
+This program uses a summation for finding pi.  The user inputs a number which is the number of terms for the summation. The more terms that are calculated, the more accurate the summation. If the user inputs a number less than or equal to 2 than the summation will not be calculated yet and the user will be asked for another number. Once the user inputs a valid number the summation will be calculated using a for loop from 1 to input. For each term, 4/(2*i-1) is added to the sum and displayed. Also every other term is subtracted from the sum and so I used the variable x and after every term I multiplied it by -1 so that it subtracts every other term. I verified my program by increasing the number of terms and seeing if they approach pi.

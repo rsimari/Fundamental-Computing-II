@@ -1,0 +1,2 @@
+git clone URL --> to clone
+git init --> initializes git

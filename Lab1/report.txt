@@ -1,0 +1,12 @@
+Lab1 - Board Games
+==================
+
+From the user's view the program begins with an option of playing Connect Four with one or two players. If they play one player then they will play against an AI player. The user will input a number for what column they want to play in and the board will update with their piece. Then depending on whether its one or two player the board with update with the second players move or the AI's move. Once a player gets 4 in a row they win and the game will end but still show the winning board. If they ever enter -1 as their column the game will end and the board will erase. 
+
+This program uses multiples class, C4Col and board. C4Col represents a column and board represents a series of C4Cols. Each C4Col has a array of discs which stack by keeping track of the top disc within the C4Col class. The C4Col class also has member functions that retrieve and add to the member variables. There is also a function that checks if the array/column is full. The board class has two public functions that allow main.cpp to display the board and initiate playing the game. There are also two private function that only deal with member variables. These functions check if a player has won and allow the AI to play. The AI function simply picks a random column to play in if the player has selected a 1 player game. The checkWin() function is the most complicated and it treats the board like a 2D array and after every turn checks if a player has won. The way it checks is that is looks for a non-empty spot on the board and once it finds a disc it looks up, to the right, and in both diagonal directions to the right. If it finds 3 discs in one of the directions that are the same disc that does not leave the bounds of the arrays, it will claim that player as the winner. I optimized this function by only checking in the (nCol - 3) number of columns because to win you must at least have one disc in a spot that is four from the right column or farther left. 
+
+I verified my program by playing it alot and trying to find a way to break it and have it mess up. I did not successfully find a mistake in my program. 
+
+The advantages of using a get function in this program and in all of C++ is that I allow other classes and files to only access what I want them to access. This gives me more power of what can happen and not happen in the program. 
+
+The deconstructors are needed because they must reallocate and free the memory in order for it to be used again much in the way malloc does it in C. 
