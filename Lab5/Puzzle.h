@@ -12,13 +12,24 @@ template <typename T>
 class Puzzle {
 private:
     vector< vector <T> > board; 
-    bool isValid(int x, int y, int number) {
+    bool isValid(int x, int y, T number) {
+        // y is horizontal, x is vertical
         // checks the box
-        int boxCol = x / 3; // y is horiz, x is vert
-        int boxRow = y / 3;
-        int i, j;
-        for (i = 0; i < 3; i++)
-            for (j = 0; j < 3; j++)
+        int boxCol, boxRow;
+        if (x < 3)
+            boxRow = 0;
+        else if (x < 6)
+            boxRow = 3; 
+        else boxRow = 6;
+        if (y < 3)
+            boxCol = 0;
+        else if (x < 6)
+            boxCol = 3; 
+        else boxCol = 6;
+        
+        int i, j; // j is horizontal and i is vert
+        for (i = boxRow; i < boxRow + 3; i++)
+            for (j = boxCol; j < boxCol + 3; j++)
                 if (board[i][j] == number) return false;
 
         // checks the rows and columns  
@@ -33,15 +44,14 @@ public:
     Puzzle() {}
     Puzzle(string input) {
         int i, j = 0; // takes in input as string and uses that as a input, not x
-        int x;
         string line;
         ifstream file(input.c_str());
         while (getline(file, line)) { // reads till end of line
-           vector <int> temp;
-           board.push_back(temp);
-           for (i = 0; i < line.size(); i++){
+            vector <T> temp;
+            board.push_back(temp);
+            for (i = 0; i < line.size(); i++){
                 if (line[i] != ' ')
-                    board.at(j).push_back(line[i] - '0');
+                    board.at(j).push_back((T)line[i] - '0');
             }
             j++;
         }
@@ -57,7 +67,7 @@ public:
             cout << endl;
         }
     }
-    void placeNumber(int x, int y, int number) {
+    void placeNumber(int x, int y, T number) {
         if (isValid(x, y, number))
             board[x][y] = number;
         else cout << "invalid placement" << endl;
